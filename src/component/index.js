@@ -4,4 +4,6 @@ import Shimmer from "./Shimmer/Shimmer";
 import Logo from "./Logo";
 import LogoutBtn from "./Header/LogoutBtn";
 import Container from "./Container/Container";
-export {Header,Footer,Shimmer,Container,Logo,LogoutBtn}
+import Button from "./Button";
+import PostCard from "./PostCard";
+export {Header,Footer,Shimmer,Container,Logo,LogoutBtn,Button,PostCard}
