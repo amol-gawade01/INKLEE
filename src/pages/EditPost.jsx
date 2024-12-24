@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container } from '../component/index'
 import PostForm from '../component/post-form/PostForm'
 import DBservice from '../appwrite/config'

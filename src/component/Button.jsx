@@ -1,11 +1,11 @@
 import React from 'react'
 
 function Button(
-    children,
+   { children,
     bgColor = 'bg-blue-500',
     textColor = 'white',
     className = '',
-    ...props
+    ...props}
 ) {
   return (
     <button className={` w-5 p-3 ${bgColor} ${textColor} ${className}  `} {...props }>

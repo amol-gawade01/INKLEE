@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import {Input,Button} from './index.js'
+import {Input,Button, Logo} from './index.js'
 import authService from '../appwrite/auth'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Signup() {
     const [error,setError] = useState()
@@ -37,12 +37,12 @@ function Signup() {
                 to="/login"
                 className="font-medium text-primary transition-all duration-200 hover:underline"
             >
-                Sign In
+                Sign In  
             </Link>
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
-        <form onSubmit={handleSubmit(create)}>
+        <form onSubmit={handleSubmit(onSignup)}>
             <div className='space-y-5'>
                 <Input
                 label="Full Name: "

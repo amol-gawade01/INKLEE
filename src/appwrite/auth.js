@@ -21,11 +21,11 @@ export class AuthService{
   async createAccount({email,password,name}){
     try {
         const userAccount = await this.account.create(ID.unique(),email,password,name);
-        if (userAccount) {
-            return this.loginUser({email,password})
-        }else{
-            return userAccount;
-        }
+        // if (userAccount) {
+        //     // return this.loginUser({email,password})
+        // }else{
+        //     return userAccount;
+        // }
     } catch (error) {
         throw error
     }
@@ -40,21 +40,27 @@ export class AuthService{
     }
   }
 
-  async getCurrentUser(){
+  async getCurrentUser() {
     try {
-       return await this.account.get()
+        const user = await this.account.get();
+        return user;
     } catch (error) {
-        throw error
+        if (error.code === 401) {
+            console.error("No user is currently logged in.");
+            return null; // Return null if the user is not logged in
+        }
+        console.error("Error fetching current user:", error);
+        throw error; // Rethrow any other error
     }
-     return null;
-  }
+}
+
 
   async logout(){
     try {
         await this.account.deleteSessions()
 
     } catch (error) {
-        
+      console.log("Appwrite serive :: logout :: error", error);   
     }
   }
 

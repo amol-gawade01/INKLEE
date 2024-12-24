@@ -1,22 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DBservice from '../appwrite/config'
 import { PostCard } from '../component'
 import { Container } from '../component/index'
 
 
 function AllPosts() {
-    const [AllPostCards,setAllPostCards] = useState({})
+    const [AllPostCards,setAllPostCards] = useState([])
 
-    useEffect(async () => {
+    useEffect( () => {
       try {
-        const Posts = await DBservice.getAllPosts()
-        if(Posts) setAllPostCards(Posts)
-        
+        DBservice.getAllPosts()
+        .then((post) => {
+           console.log(post)
+          if(post) setAllPostCards(post.documents || [])
+        })
       } catch (error) {
-        console.log("error while getting posts ",error)
+         console.log("Error while getting posts",error)
       }
+        
+        
+      } 
+    , [])
+
     
-    }, [])
     
 
   return (

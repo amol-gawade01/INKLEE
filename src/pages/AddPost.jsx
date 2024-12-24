@@ -1,6 +1,6 @@
 import React from 'react'
-import PostForm from '../component/post-form/PostForm'
-import Container from '../component/index'
+import {PostForm,Container} from '../component/index'
+
 function AddPost() {
   return (
     <div className='py-8'>
