@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import DBservice from "../appwrite/config";
 import { Container } from "../component/index";
 import PostCard from "../component/PostCard";
+import { useSelector } from "react-redux";
 
 function Home() {
     const [posts, setPosts] = useState([]);
+    
 
     useEffect(() => {
         DBservice.getAllPosts()

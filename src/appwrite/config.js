@@ -123,6 +123,46 @@ export class Service{
             fileId
         )
     }
+
+    async incrLike(userId, slug) {
+        try {
+
+            const currentDocument = await this.databases.getDocument(
+                conf.DatabaseId,
+                conf.CollectionId,
+                slug
+            );
+    
+           let updatedLikes;
+
+            const currentLikes = currentDocument.likes || [];
+            if (currentLikes.includes(userId)) {
+                // console.log("User already liked this post");
+             updatedLikes =   currentLikes.filter((like) => like !== userId)
+            }else{
+                updatedLikes = [...currentLikes, userId];
+            }
+    
+           
+       
+    
+           
+            const updatedDocument = await this.databases.updateDocument(
+                conf.DatabaseId,
+                conf.CollectionId,
+                slug,
+                {
+                    likes: updatedLikes,
+                }
+            );
+            return updatedDocument.likes;
+    
+            console.log("Likes updated successfully:", updatedDocument)
+        } catch (error) {
+            console.log("Error while updating post at Appwrite", error);
+        }
+    }
+    
 }
 
 const DBservice = new Service();

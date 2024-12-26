@@ -23,7 +23,9 @@ export default function PostForm({ post }) {
             const file = data.image[0] ? await DBservice.uploadFile(data.image[0]) : null;
 
             if (file) {
-                DBservice.deleteFile(post.featuredImage);
+               console.log(post.featuredImage)
+               DBservice.deleteFile(post.featuredImage);
+               console.log("File deleted")
             }
 
             const dbPost = await DBservice.updatePost(post.$id, {
@@ -93,7 +95,7 @@ export default function PostForm({ post }) {
                     className="mb-4"
                     {...register("slug", { required: true })}
                     onInput={(e) => {
-                        setValue("slug", slugTransform(e.cu9rrentTarget.value), { shouldValidate: true });
+                        setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                     }}
                 />
                 <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />

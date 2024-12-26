@@ -39,8 +39,8 @@ function App() {
   }else{
     return <>
      <Header/>
-     <main>
-     TODO:<Outlet/>
+     <main className='min-h-screen'>
+     <Outlet/>
      </main>
      <Footer/>
     </>
