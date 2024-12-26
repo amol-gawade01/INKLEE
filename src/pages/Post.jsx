@@ -23,6 +23,8 @@ export default function Post() {
         } else navigate("/");
     }, [slug, navigate]);
 
+    
+
     const deletePost = () => {
         DBservice.deletePost(post.$id).then((status) => {
             if (status) {
@@ -32,28 +34,68 @@ export default function Post() {
         });
     };
 
+    const giveLike = async () => {
+        //Optimistic rendering
+        if (!userData) {
+            console.log("User is not logged in.");
+            return;
+        }
+    
+        const userId = userData.$id;
+    
+    
+        const userHasLiked = post.likes.includes(userId);
+        const updatedLikes = userHasLiked
+            ? post.likes.filter((id) => id !== userId) 
+            : [...post.likes, userId]; 
+       
+
+        setPost((prev) => ({ ...prev, likes: updatedLikes }));
+    
+        try {
+            
+            await DBservice.incrLike(userId, slug);
+        } catch (error) {
+            console.error("Error toggling like:", error);
+    
+           
+            setPost((prev) => ({
+                ...prev,
+                likes: userHasLiked
+                    ? [...prev.likes, userId] // Rollback to "liked"
+                    : prev.likes.filter((id) => id !== userId), // Rollback to "unliked"
+            }));
+        }
+    }
+
     return post ? (
         <div className="py-8">
             <Container>
-                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+            {isAuthor && (
+                        <div className="absolute w-1/5 right-16 top-6 flex justify-evenly">
+                            <Link to={`/edit-post/${post.$id}`}>
+                                <Button bgColor="bg-green-500" className="mr-3 w-6 mb-4 mt-4 pr-11 rounded pt-2">
+                                    Edit
+                                </Button>
+                            </Link>
+                            <Button bgColor="bg-red-500" className="mr-3 w-6 mb-4 mt-4 pr-14 rounded pt-2" onClick={deletePost}>
+                                Delete
+                            </Button>
+                        </div>
+                    )}
+                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2 mt-8">
                     <img
                         src={DBservice.getFilePreview(post.featuredImage)}
                         alt={post.title}
                         className="rounded-xl"
                     />
 
-                    {isAuthor && (
-                        <div className="absolute right-6 top-6">
-                            <Link to={`/edit-post/${post.$id}`}>
-                                <Button bgColor="bg-green-500" className="mr-3">
-                                    Edit
-                                </Button>
-                            </Link>
-                            <Button bgColor="bg-red-500" onClick={deletePost}>
-                                Delete
-                            </Button>
-                        </div>
-                    )}
+                    
+                </div>
+                <div>
+                    <Button bgColor="bg-slate-500" className=" w-8 p-2 text-black text-center rounded-md" onClick={giveLike} >
+                        {(post.likes).length}
+                    </Button>
                 </div>
                 <div className="w-full mb-6">
                     <h1 className="text-2xl font-bold">{post.title}</h1>
