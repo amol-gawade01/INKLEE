@@ -16,12 +16,14 @@ export class Service{
         this.storage = new Storage(this.client)
     }
 
+    //Post Collection
+
     async createPost({title,slug,content,featuredImage,status,userId}){
         try {
             
        return await this.databases.createDocument(
             conf.DatabaseId,
-            conf.CollectionId,
+            conf.PostCollectionId,
             slug,
             {
                 title,
@@ -42,7 +44,7 @@ export class Service{
         try {
             return await this.databases.updateDocument(
                 conf.DatabaseId,
-                conf.CollectionId,
+                conf.PostCollectionId,
                 slug,
                 {
                    title,
@@ -58,7 +60,7 @@ export class Service{
 
     async deletePost(slug){
         try {
-            await this.databases.deleteDocument(conf.DatabaseId,conf.CollectionId,slug)
+            await this.databases.deleteDocument(conf.DatabaseId,conf.PostCollectionId,slug)
             return true;
 
         } catch (error) {
@@ -69,7 +71,7 @@ export class Service{
 
     async getPost(slug){
         try {
-           const post =  await this.databases.getDocument(conf.DatabaseId,conf.CollectionId,slug)
+           const post =  await this.databases.getDocument(conf.DatabaseId,conf.PostCollectionId,slug)
            return post;
         } catch (error) {
             console.log("Error while getting post",error)
@@ -80,7 +82,7 @@ export class Service{
         try {
          return  await this.databases.listDocuments(
                 conf.DatabaseId,
-                conf.CollectionId,
+                conf.PostCollectionId,
                 queries
                 
             )
@@ -117,7 +119,7 @@ export class Service{
      }
     }
 
-    getFilePreview(fileId){
+     getFilePreview(fileId){
         return this.storage.getFilePreview(
             conf.BucketId,
             fileId
@@ -129,7 +131,7 @@ export class Service{
 
             const currentDocument = await this.databases.getDocument(
                 conf.DatabaseId,
-                conf.CollectionId,
+                conf.PostCollectionId,
                 slug
             );
     
@@ -149,7 +151,7 @@ export class Service{
            
             const updatedDocument = await this.databases.updateDocument(
                 conf.DatabaseId,
-                conf.CollectionId,
+                conf.PostCollectionId,
                 slug,
                 {
                     likes: updatedLikes,
@@ -163,6 +165,72 @@ export class Service{
         }
     }
     
+   
+
+
+
+    //Comment collection
+
+    async addComment({slug,content,userId,name}){
+       try {
+         await this.databases.createDocument(
+            conf.DatabaseId,
+            conf.CommentCollectionId,
+            'unique()',
+            {
+             blogId:slug,
+             content,
+             userId,
+             name
+            }    
+        )
+        console.log("Comment added")
+        return;
+       } catch (error) {
+         console.log("Error while commenting on a post",error)
+       }
+    }
+
+    async getComment(slug){
+        try {
+            return  await this.databases.listDocuments(
+              conf.DatabaseId,
+              conf.CommentCollectionId,
+              Query.equal['blogId',slug]
+            )
+
+
+            
+        } catch (error) {
+            console.log("Error while fecthing comments",error)
+        }
+    }
+
+    async deleteComment(commentId){
+        try {
+            await this.databases.deleteDocument(conf.DatabaseId,conf.CommentCollectionId,commentId)
+            return true;
+
+        } catch (error) {
+            console.log("error while deleting post at appwrite",error)
+            return false;
+        }
+    }
+    
+    async updateComment(commentId,content){
+        try {
+          return  await  this.databases.updateDocument(
+            conf.DatabaseId,
+            conf.CommentCollectionId,
+            commentId,
+            {
+                content
+            }
+            )
+        } catch (error) {
+            console.log("Error while updating comment",error)
+        }
+    }
 }
 
 const DBservice = new Service();

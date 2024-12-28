@@ -13,6 +13,7 @@ import RTE from './RTE'
 import Login from './Login.jsx'
 import Input from './Input.jsx'
 import Select from "./Select.jsx";
+import CommentCompo from "./Comment.jsx";
 
 export {
   Header,
@@ -29,5 +30,6 @@ export {
   RTE,
   Login,
   Input,
-  Select
+  Select,
+  CommentCompo
 };
