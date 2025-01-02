@@ -28,7 +28,7 @@ function Login() {
 
   return (
     <div
-    className='flex items-center justify-center w-full'
+    className='flex items-center justify-center w-full mt-24'
     >
         <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
         <div className="mb-2 flex justify-center">
@@ -71,7 +71,8 @@ function Login() {
                 />
                 <Button
                 type="submit"
-                className="w-full"
+                className="w-full text-white rounded-md"
+                bgColor='bg-black'
                 >Sign in</Button>
             </div>
         </form>
