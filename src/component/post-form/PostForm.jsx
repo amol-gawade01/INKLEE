@@ -18,7 +18,10 @@ export default function PostForm({ post }) {
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
 
+console.log("User ID:", userData);
+
     const submit = async (data) => {
+        console.log("Data being sent:", data);
         if (post) {
             const file = data.image[0] ? await DBservice.uploadFile(data.image[0]) : null;
 
@@ -28,7 +31,7 @@ export default function PostForm({ post }) {
                console.log("File deleted")
             }
 
-            const dbPost = await DBservice.updatePost(post.$id, {
+            const dbPost = await DBservice.updatePost(post?.$id, {
                 ...data,
                 featuredImage: file ? file.$id : undefined,
             });
@@ -123,7 +126,7 @@ export default function PostForm({ post }) {
                     className="mb-4"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                <Button type="submit" bgColor={post ? "bg-green-500" : "bg-black"} className="w-full text-white rounded-md">
                     {post ? "Update" : "Submit"}
                 </Button>
             </div>
