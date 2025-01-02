@@ -13,7 +13,7 @@ function Home() {
         console.log("Fetched posts:", response); 
          const post = response.documents || [];
          if (post) {
-          setPosts(post?.filter((p) => p.likes.length >1 ))
+          setPosts(post?.filter((p) => p.likes.length >=1 ))
          }
       })
       .catch((error) => console.error("Error fetching posts:", error));
@@ -22,7 +22,7 @@ function Home() {
   if (posts.length === 0) {
     return (
       <div>
-        <div>
+       <div className="w-[90%] m-auto">
          <WelcomePage/>
       </div>
       <div className="w-full py-8 mt-4 text-center">
@@ -41,7 +41,7 @@ function Home() {
       </div>
       <Container>
        <div className="text-center mb-4">
-       <h3 className="text-black font-semibold text-3xl text-center items-center "> --- Hot Picks ---</h3>
+       <h3 className="text-black font-semibold text-3xl text-center items-center mt-5"> Hot Picks </h3>
        </div>
         <div className="flex flex-wrap mb-16">
           {posts.map((post) => (
@@ -51,6 +51,7 @@ function Home() {
                 title={post.title}
                 featuredImage={post.featuredImage}
                 likes={post.likes}
+                userId={post.userId}
               />
             </div>
           ))}
