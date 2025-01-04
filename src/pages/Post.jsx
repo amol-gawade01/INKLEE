@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import DBservice from "../appwrite/config.js";
-import { Button, Container, Input,CommentCompo } from "../component/index";
+import { Button, Container, Input, CommentCompo } from "../component/index";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
+import heart from "../../src/assets/Images/heart.png";
+import likeheart from "../../src/assets/Images/likeheart.png";
 
 export default function Post() {
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
+  const [userLiked, setUserLiked] = useState(false);
   const { register, handleSubmit, reset } = useForm();
   const { slug } = useParams();
+  console.log(slug);
   const navigate = useNavigate();
 
   const userData = useSelector((state) => state.auth.userData);
@@ -20,15 +24,19 @@ export default function Post() {
   useEffect(() => {
     if (slug) {
       DBservice.getPost(slug).then((post) => {
-        if (post) setPost(post);
+        if (post){
+          setPost(post)
+          setUserLiked(post.likes.includes(userData.$id))
+        }
         else navigate("/");
       });
-
+      
       DBservice.getComment(slug).then((comment) => {
         if (comment) {
-            setComments(comment.documents)
-        }else{
-            setComments([])
+          console.log(comment);
+          setComments(comment.documents);
+        } else {
+          setComments([]);
         }
       });
     } else navigate("/");
@@ -58,6 +66,7 @@ export default function Post() {
       : [...post.likes, userId];
 
     setPost((prev) => ({ ...prev, likes: updatedLikes }));
+    setUserLiked((prev) => !prev);
 
     try {
       await DBservice.incrLike(userId, slug);
@@ -91,19 +100,18 @@ export default function Post() {
     }
   };
 
-  
-
   const handleCommentEdit = (commentId, newContent) => {
-    const updatedComments = comments.map(comment => 
+    const updatedComments = comments.map((comment) =>
       comment.$id === commentId ? { ...comment, content: newContent } : comment
     );
     setComments(updatedComments);
   };
-  
 
   const handleDeleteComment = (commentId) => {
-    const updatedComments = comments.filter((comment) => comment.$id !== commentId);
-    setComments(updatedComments); 
+    const updatedComments = comments.filter(
+      (comment) => comment.$id !== commentId
+    );
+    setComments(updatedComments);
   };
 
   return post ? (
@@ -132,47 +140,52 @@ export default function Post() {
           <img
             src={DBservice.getFilePreview(post.featuredImage)}
             alt={post.title}
-            className="rounded-xl"
+            className="rounded-xl w-full h-[700px]"
           />
         </div>
-        <div>
-          <Button
-            bgColor="bg-slate-500"
-            className=" w-8 p-2 text-black text-center rounded-md"
+        <div className="ml-8 bg-white w-full flex items-center">
+          <button
+            className="flex items-center  text-black p-2 rounded-md hover:focus:outline-none"
             onClick={giveLike}
           >
+            {userLiked ? (<img src={likeheart} alt="Like" className="w-6 h-6 mr-2" />):(<img src={heart} alt="Like" className="w-6 h-6 mr-2" />)}
             {post.likes.length}
-          </Button>
+          </button>
         </div>
-        <div className="w-full mb-6" >
+
+        <div className="w-full mb-6 ml-4">
           <h1 className="text-2xl font-bold">{post.title}</h1>
         </div>
-        <div className="browser-css mb-14">{parse(post.content)}</div>
-        <div className="w-full bg-slate-200 min-h-auto flex flex-col">
-          <form onSubmit={handleSubmit(addComment)}>
+        <div className="browser-css mb-14 ml-4">{parse(post.content)}</div>
+
+        <div className="w-full  min-h-auto flex flex-col">
+          <form onSubmit={handleSubmit(addComment)} className="w-full flex justify-around">
             <Input
               placeholder="Add your comment"
-              className="m-2 w-[48rem] p-3 text-black "
+              className="m-2 w-[64rem] p-3 text-black border border-black placeholder-gray-700"
               {...register("comment", { required: true })}
             />
-            <Button bgColor="bg-blue-500" className="w-36 m-2 p-2 rounded-md">
+            <Button bgColor="bg-gray-400" className="w-full m-2 p-1 rounded-md font-semibold text-black">
               Add Comment
             </Button>
           </form>
           <h5 className="text-black m-3">Comments</h5>
-          <div className="w-full flex flex-col bg-blue-300">
+          <div className="w-full flex flex-col ">
             {comments.length > 0 ? (
               comments.map((comment) => (
-                <CommentCompo
+                <div className="m-3">
+                  <CommentCompo
                   key={comment.$id}
                   content={comment.content}
                   username={comment.name}
                   userId={comment.userId}
                   commentId={comment.$id}
-                  onEditComment={(newContent) => handleCommentEdit(comment.$id, newContent)} 
+                  onEditComment={(newContent) =>
+                    handleCommentEdit(comment.$id, newContent)
+                  }
                   onDeleteComment={handleDeleteComment}
-                  
                 />
+                  </div>
               ))
             ) : (
               <p className="text-gray-500 p-2">
