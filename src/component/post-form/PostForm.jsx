@@ -84,8 +84,8 @@ console.log("User ID:", userData);
     }, [watch, slugTransform, setValue]);
 
     return (
-        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-            <div className="w-2/3 px-2">
+        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap flex-col lg:flex-row">
+            <div className="lg:w-2/3 px-2 flex-col w-full">
                 <Input
                     label="Title :"
                     placeholder="Title"
@@ -103,7 +103,7 @@ console.log("User ID:", userData);
                 />
                 <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
             </div>
-            <div className="w-1/3 px-2">
+            <div className="lg:w-1/3 w-full mt-6 lg:mt-0 px-2 ">
                 <Input
                     label="Featured Image :"
                     type="file"

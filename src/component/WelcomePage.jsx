@@ -15,7 +15,7 @@ function WelcomePage() {
            }
     }
   return (
-    <div className="relative w-full h-[80vh] m-5 bg-black rounded-xl mt-5 overflow-hidden">
+    <div className="relative w-full max-w-[90vw] h-[80vh]  bg-black rounded-xl mt-5 overflow-hidden select-none">
       {/* Background Image */}
       <img
         src={typewritter}
@@ -24,7 +24,7 @@ function WelcomePage() {
       />
 
       {/* Content */}
-      <div className="relative z-10 flex items-center justify-between w-full h-full px-10">
+      <div className="relative z-10 flex flex-col lg:flex-row justify-center lg:flex items-center lg:justify-between lg:text-center w-1/2 lg:w-full h-full px-10">
         {/* Button on the Left */}
         <button className="bg-white text-black px-10 py-2 rounded-full text-lg font-semibold shadow-md lg:mt-96 ml-7" onClick={handleClick}>
           Create

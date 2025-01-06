@@ -26,9 +26,9 @@ function AllPosts() {
     
 
   return (
-    <div className='w-screen mt-10'>
+    <div className='w-full mt-10'>
         <Container>
-           <div className='flex flex-wrap w-auto'>
+           <div className='flex flex-col ml-6 lg:flex-row flex-wrap w-auto'>
             {AllPostCards.map((Posts) => (
                 <div key={Posts.$id} className='p-2 w-1/4 '>
                     <PostCard $id={Posts.$id} title={Posts.title} featuredImage={Posts.featuredImage} likes={Posts.likes} userId={Posts.userId}/>
