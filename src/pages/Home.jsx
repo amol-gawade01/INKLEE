@@ -22,7 +22,7 @@ function Home() {
   if (posts.length === 0) {
     return (
       <div>
-       <div className="w-[90%] m-auto">
+       <div className="w-[90%] m-auto ">
          <WelcomePage/>
       </div>
       <div className="w-full py-8 mt-4 text-center">
@@ -43,7 +43,7 @@ function Home() {
        <div className="text-center mb-4">
        <h3 className="text-black font-semibold text-3xl text-center items-center mt-5"> Hot Picks </h3>
        </div>
-        <div className="flex flex-wrap mb-16">
+        <div className="flex flex-wrap flex-col ml-8 mb-16 lg:flex-row">
           {posts.map((post) => (
             <div key={post.$id} className="p-2 w-1/4">
               <PostCard
