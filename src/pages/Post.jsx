@@ -14,7 +14,6 @@ export default function Post() {
   const [userLiked, setUserLiked] = useState(false);
   const { register, handleSubmit, reset } = useForm();
   const { slug } = useParams();
-  console.log(slug);
   const navigate = useNavigate();
 
   const userData = useSelector((state) => state.auth.userData);
@@ -33,7 +32,6 @@ export default function Post() {
       
       DBservice.getComment(slug).then((comment) => {
         if (comment) {
-          console.log(comment);
           setComments(comment.documents);
         } else {
           setComments([]);
@@ -90,7 +88,7 @@ export default function Post() {
         userId: userData.$id,
         name: userData.name,
       });
-      console.log("Comment added successfully");
+     
       const updatedComments = await DBservice.getComment(slug);
       setComments(updatedComments.documents);
 

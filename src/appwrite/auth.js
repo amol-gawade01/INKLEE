@@ -1,5 +1,7 @@
-import { Client,Account,ID } from "appwrite";
+import { Client,Account,ID} from "appwrite";
 import conf  from "../conf/conf";
+import DBservice from "./config";
+
 
 
 
@@ -7,6 +9,7 @@ export class AuthService{
 
   client = new Client();
   account;
+  
 
 
   constructor(){
@@ -14,13 +17,23 @@ export class AuthService{
     this.client
      .setEndpoint(conf.appwriteUrl)
      .setProject(conf.ProjectId)
+    
+
 
      this.account = new Account(this.client);
+  
   }
 
   async createAccount({email,password,name}){
     try {
         const userAccount = await this.account.create(ID.unique(),email,password,name);
+      
+        let userTaken;
+        if (userAccount) {
+         userTaken  =  await DBservice.createUser(name,userAccount.$id)
+        }
+         
+        return userAccount;
      
     } catch (error) {
         throw error
@@ -49,6 +62,16 @@ export class AuthService{
         throw error; // Rethrow any other error
     }
 }
+
+// async getUserById(userId) {
+//   try {
+//     return await this.users.get(userId); // Fetch user by ID
+//   } catch (error) {
+//     console.error("Error fetching user by ID:", error);
+//     throw error;
+//   }
+// }
+ 
 
 
   async logout(){

@@ -14,6 +14,7 @@ import Post from './pages/Post.jsx'
 import EditPost from './pages/EditPost.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import AuthLayout from './component/AuthLayout.jsx'
+import DashBoard from './pages/DashBoard.jsx'
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,15 @@ const router = createBrowserRouter([
             path: "/post/:slug",
             element: <Post />,
         },
+        {
+            path:'/Profile',
+            element:(
+                <AuthLayout>
+
+                    <DashBoard/> 
+                </AuthLayout>
+        )
+        }
     ],
 },
 ])

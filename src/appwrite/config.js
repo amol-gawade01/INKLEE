@@ -91,6 +91,19 @@ export class Service{
         }
     }
 
+    async getUserPosts(userId){
+      try {
+       const userPosts =  await this.databases.listDocuments(
+            conf.DatabaseId,
+            conf.PostCollectionId,
+            Query.equal["userId",userId]
+        )
+        return userPosts;
+      } catch (error) {
+        console.log("Error while fetching user posts")
+      }
+    }
+
     //File Handling
     async uploadFile(file){
         try {
@@ -139,7 +152,7 @@ export class Service{
 
             const currentLikes = currentDocument.likes || [];
             if (currentLikes.includes(userId)) {
-                // console.log("User already liked this post");
+               
              updatedLikes =   currentLikes.filter((like) => like !== userId)
             }else{
                 updatedLikes = [...currentLikes, userId];
@@ -159,7 +172,6 @@ export class Service{
             );
             return updatedDocument.likes;
     
-            console.log("Likes updated successfully:", updatedDocument)
         } catch (error) {
             console.log("Error while updating post at Appwrite", error);
         }
@@ -196,7 +208,7 @@ export class Service{
             return  await this.databases.listDocuments(
               conf.DatabaseId,
               conf.CommentCollectionId,
-              Query.equal['blogId',slug]
+              [Query.equal('blogId', slug)]
             )
 
 
@@ -231,7 +243,57 @@ export class Service{
             console.log("Error while updating comment",error)
         }
     }
+
+
+     // Users Collection
+
+    async createUser(username,userID){
+      try {
+        return await this.databases.createDocument(
+            conf.DatabaseId,
+            conf.UsersCollectionId,
+            'unique()',
+            {
+                username,
+                userID
+            }
+
+        )
+      } catch (error) {
+        console.log("Error while adding user to usercollection",error)
+      }
+        
+    }
+
+    async getUser(userID) {
+        try {
+            const result = await this.databases.listDocuments(
+                conf.DatabaseId,         // Your database ID
+                conf.UsersCollectionId,  // Your collection ID
+                [Query.equal('userID', userID)] // Correct syntax for querying
+            );
+    
+            if (result.documents.length === 0) {
+                throw new Error("No user found with the provided userID.");
+            }
+    
+            if (result.documents.length > 1) {
+                console.warn("Multiple users found. Returning the first match.");
+            }
+    
+            return result.documents[0];
+        } catch (error) {
+            console.log("Error while getting the user", error);
+            throw error; 
+        }
+    }
+    
 }
+
+
+
+
+
 
 const DBservice = new Service();
 

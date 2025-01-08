@@ -23,16 +23,16 @@ export default function PostForm({ post }) {
   const [AiResponse,setAiResponse] = useState("")
 
   const submit = async (data) => {
-    console.log("Data being sent:", data);
+   
     if (post) {
       const file = data.image[0]
         ? await DBservice.uploadFile(data.image[0])
         : null;
 
       if (file) {
-        console.log(post.featuredImage);
+     
         DBservice.deleteFile(post.featuredImage);
-        console.log("File deleted");
+      
       }
 
       const dbPost = await DBservice.updatePost(post?.$id, {
@@ -56,7 +56,7 @@ export default function PostForm({ post }) {
           ...data,
           userId: userData.$id,
         });
-        console.log(dbPost);
+      
 
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
@@ -113,11 +113,9 @@ export default function PostForm({ post }) {
 
        
         let  output = result[0]?.generated_text.replace(/\n+/g, " ");
-        console.log(output)
         if (output.includes(aiprompt)) {
             output = output.replace(aiprompt + '?', " ").trim();
           }
-        console.log(output)
        
         return output;
     } catch (error) {

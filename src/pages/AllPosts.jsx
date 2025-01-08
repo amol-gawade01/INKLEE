@@ -11,7 +11,7 @@ function AllPosts() {
       try {
         DBservice.getAllPosts()
         .then((post) => {
-           console.log(post)
+      
           if(post) setAllPostCards(post.documents || [])
         })
       } catch (error) {

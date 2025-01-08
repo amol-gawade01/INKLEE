@@ -23,7 +23,7 @@ function Signup() {
     }
     }
   return (
-    <div className="flex items-center justify-center mt-16 select-none">
+    <div className="flex items-center justify-center lg:w-full w-[90%] m-auto lg:m-0  lg:mt-20 selct-none">
     <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
     <div className="mb-2 flex justify-center">
             <span className="inline-block w-full max-w-[100px]">
@@ -70,7 +70,7 @@ function Signup() {
                 {...register("password", {
                     required: true,})}
                 />
-                <Button type="submit" className="w-full text-white" bgColor='bg-black'>
+                <Button type="submit" className="w-full text-white rounded-md" bgColor='bg-black'>
                     Create Account
                 </Button>
             </div>

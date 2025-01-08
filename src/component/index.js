@@ -14,6 +14,8 @@ import Login from './Login.jsx'
 import Input from './Input.jsx'
 import Select from "./Select.jsx";
 import CommentCompo from "./Comment.jsx";
+import Profile from './Profile.jsx'
+import WelcomePage from "./WelcomePage.jsx";
 
 export {
   Header,
@@ -31,5 +33,7 @@ export {
   Login,
   Input,
   Select,
-  CommentCompo
+  CommentCompo,
+  Profile,
+  WelcomePage
 };

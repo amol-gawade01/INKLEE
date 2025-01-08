@@ -32,12 +32,12 @@ function Profile() {
   }, [userData]);
 
   return (
-    <div className="w-full m-auto mt-16 overflow-hidden">
-      <div className="w-1/3 m-0 flex items-center mb-24 ml-24">
+    <div className="w-full m-auto mt-16 overflow-hidden select-none">
+      <div className="lg:w-1/3 w-full m-0 flex items-center mb-24 ml-10 lg:ml-24">
         <div>
-          <img src={user} className="w-42 h-40" alt="User" />
+          <img src={user} className="lg:w-42 lg:h-40 w-20 h-20" alt="User" />
         </div>
-        <div className="w-56 text-black m-4 ml-20">
+        <div className="lg:w-56  text-black m-4 ml-20">
           <h3 className="font-semibold text-2xl">Name: {userData?.name}</h3>
           <h3 className="font-semibold text-gray-600 text-xl">
             Blogs: {userPosts?.length || 0}
@@ -46,7 +46,7 @@ function Profile() {
       </div>
 
       {loading ? (
-        <h3>Loading...</h3>
+        <h3 className="ml-24">Loading...</h3>
       ) : userPosts.length === 0 ? (
         <h3>No posts available</h3>
       ) : (
