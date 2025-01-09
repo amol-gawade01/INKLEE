@@ -41,8 +41,8 @@ function CommentCompo({ content, username, userId, commentId,onEditComment,onDel
   };
 
   return (
-    <div className="flex flex-col w-1/2 mb-4 ml-6 bg-white  rounded-md mt-5">
-      <div className="w-auto flex flex-row">
+    <div className="w-full flex flex-col lg:w-1/2 mb-4 ml-6 bg-white  rounded-md mt-5">
+      <div className=" lg:w-auto flex flex-row">
         <img src={user} className="w-7 h-7 items-center mr-2"/>
         <h4 className="text-black text-lg font-semibold">{username}</h4>
         {userData && userData.$id === userId && (
