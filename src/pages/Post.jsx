@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import heart from "../../src/assets/Images/heart.png";
 import likeheart from "../../src/assets/Images/likeheart.png";
+import send from "../../src/assets/Images/send.png";
 
 export default function Post() {
   const [post, setPost] = useState(null);
@@ -112,42 +113,63 @@ export default function Post() {
     setComments(updatedComments);
   };
 
+  const sharePost = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: post?.title, // The title of the blog
+          text: "Check out this amazing blog!", // A short description
+          url: window.location.href, // The current page URL
+        })
+        .then(() => {
+          console.log("Blog shared successfully!");
+        })
+        .catch((error) => {
+          console.error("Error sharing the blog:", error);
+        });
+    } else {
+      cons
+  }
+  }
   return post ? (
-    <div className="py-8 select-none">
+    <div className="py-10 select-none">
       <Container>
         {isAuthor && (
-          <div className="absolute w-1/5 right-16 top-6 flex justify-evenly">
+          <div className="absolute w-1/5 right-16 top-20 mr-5 lg:ml-5 lg:top-24 flex justify-evenly">
             <Link to={`/edit-post/${post.$id}`}>
               <Button
                 bgColor="bg-green-500"
-                className="mr-3 w-6 mb-4 mt-4 pr-11 rounded pt-2"
+                className="mr-3 w-6 mb-4 mt-4 pr-11 rounded pt-2 text-white font-semibold"
               >
                 Edit
               </Button>
             </Link>
             <Button
               bgColor="bg-red-500"
-              className="mr-3 w-6 mb-4 mt-4 pr-14 rounded pt-2"
+              className="mr-3 w-6 mb-4 mt-4 pr-14 rounded pt-2 text-white font-semibold"
               onClick={deletePost}
             >
               Delete
             </Button>
           </div>
         )}
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2 mt-8">
+        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2 mt-10">
           <img
             src={DBservice.getFilePreview(post.featuredImage)}
             alt={post.title}
-            className="rounded-xl w-full h-[700px]"
+            className="rounded-xl w-full  lg:h-[700px]"
           />
         </div>
-        <div className="ml-8 bg-white w-full flex items-center">
+        <div className="ml-8 bg-white w-full flex items-center justify-between">
           <button
             className="flex items-center  text-black p-2 rounded-md hover:focus:outline-none"
             onClick={giveLike}
           >
             {userLiked ? (<img src={likeheart} alt="Like" className="w-6 h-6 mr-2" />):(<img src={heart} alt="Like" className="w-6 h-6 mr-2" />)}
             {post.likes.length}
+          </button >
+          <button onClick={sharePost}>
+           <img src={send} className="w-7 h-7 mr-16" />
           </button>
         </div>
 
@@ -157,13 +179,13 @@ export default function Post() {
         <div className="browser-css mb-14 ml-4">{parse(post.content)}</div>
 
         <div className="w-full  min-h-auto flex flex-col">
-          <form onSubmit={handleSubmit(addComment)} className="w-full flex justify-around">
+          <form onSubmit={handleSubmit(addComment)} className="w-full flex flex-col lg:flex-row  justify-around">
             <Input
               placeholder="Add your comment"
-              className="m-2 w-[64rem] p-3 text-black border border-black placeholder-gray-700"
+              className="m-2 w-[22rem] lg:w-[64rem] p-3 text-black border border-gray-400 placeholder-gray-700 "
               {...register("comment", { required: true })}
             />
-            <Button bgColor="bg-gray-400" className="w-full m-2 p-1 rounded-md font-semibold text-black">
+            <Button bgColor="bg-black" className="w-[300px] m-auto lg:w-1/3 lg:ml-5  lg:m-2  rounded-md font-semibold text-white">
               Add Comment
             </Button>
           </form>
@@ -171,9 +193,9 @@ export default function Post() {
           <div className="w-full flex flex-col ">
             {comments.length > 0 ? (
               comments.map((comment) => (
-                <div className="m-3">
+                <div className="m-3"  key={comment.$id}>
                   <CommentCompo
-                  key={comment.$id}
+                 
                   content={comment.content}
                   username={comment.name}
                   userId={comment.userId}
