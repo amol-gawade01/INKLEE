@@ -33,12 +33,12 @@ function Profile() {
 
   return (
     <div className="w-full m-auto mt-16 overflow-hidden select-none">
-      <div className="lg:w-1/3 w-full m-0 flex items-center mb-24 ml-10 lg:ml-24">
+      <div className="lg:w-1/3 w-full m-0 flex flex-col lg:flex-row items-center  mb-24 lg:ml-24">
         <div>
-          <img src={user} className="lg:w-42 lg:h-40 w-20 h-20" alt="User" />
+          <img src={user} className="lg:w-full lg:h-40 w-40 h-40" alt="User" />
         </div>
-        <div className="lg:w-56  text-black m-4 ml-20">
-          <h3 className="font-semibold text-2xl">Name: {userData?.name}</h3>
+        <div className="lg:w-56  text-black m-4 lg:ml-24">
+          <h3 className="font-semibold text-2xl">{userData?.name}</h3>
           <h3 className="font-semibold text-gray-600 text-xl">
             Blogs: {userPosts?.length || 0}
           </h3>
@@ -50,7 +50,7 @@ function Profile() {
       ) : userPosts.length === 0 ? (
         <h3>No posts available</h3>
       ) : (
-        <div className="min-h-screen m-4 bg-gray flex flex-row flex-wrap gap-4 ml-14">
+        <div className="min-h-screen m-4 bg-gray flex flex-row flex-wrap gap-4 ml-14 lg:ml-20">
           {userPosts.map((post) => (
             <PostCard
               key={post.$id}

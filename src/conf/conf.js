@@ -9,5 +9,6 @@ const conf = {
     UsersApi: String(import.meta.env.VITE_APPWRITE_USERS_API),
     UsersCollectionId: String(import.meta.env.VITE_APPWRITE_USERS_COLLECTION_ID),
     AiApiToken:String(import.meta.env.VITE_AI_MODEL_API),
+   
 }
 export default conf; 
