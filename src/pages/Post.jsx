@@ -5,9 +5,7 @@ import { Button, Container, Input, CommentCompo } from "../component/index";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import heart from "../../src/assets/Images/heart.png";
-import likeheart from "../../src/assets/Images/likeheart.png";
-import send from "../../src/assets/Images/send.png";
+
 
 export default function Post() {
   const [post, setPost] = useState(null);
@@ -165,11 +163,11 @@ export default function Post() {
             className="flex items-center  text-black p-2 rounded-md hover:focus:outline-none"
             onClick={giveLike}
           >
-            {userLiked ? (<img src={likeheart} alt="Like" className="w-6 h-6 mr-2" />):(<img src={heart} alt="Like" className="w-6 h-6 mr-2" />)}
+            {userLiked ? (<img src="https://res.cloudinary.com/vipeocloud/image/upload/v1736617787/likeheart_wbursa.png" alt="Like" className="w-6 h-6 mr-2" />):(<img src="https://res.cloudinary.com/vipeocloud/image/upload/v1736617786/heart_lss6dz.png" alt="Like" className="w-6 h-6 mr-2" />)}
             {post.likes.length}
           </button >
           <button onClick={sharePost}>
-           <img src={send} className="w-7 h-7 mr-16" />
+           <img src="https://res.cloudinary.com/vipeocloud/image/upload/v1736617787/send_eqeux9.png" className="w-7 h-7 mr-16" />
           </button>
         </div>
 

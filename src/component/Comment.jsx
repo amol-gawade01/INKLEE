@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import DBservice from "../appwrite/config.js"; 
-import user from "../../src/assets/Images/user.png" 
-import deleteblack from '../../src/assets/Images/deleteblack.png'
-import blackpencil from "../../src/assets/Images/blackpencil.png"
+
 
 
 function CommentCompo({ content, username, userId, commentId,onEditComment,onDeleteComment }) {
@@ -43,15 +41,15 @@ function CommentCompo({ content, username, userId, commentId,onEditComment,onDel
   return (
     <div className="w-full flex flex-col lg:w-1/2 mb-4 ml-6 bg-white  rounded-md mt-5">
       <div className=" lg:w-auto flex flex-row">
-        <img src={user} className="w-7 h-7 items-center mr-2"/>
+        <img src="https://res.cloudinary.com/vipeocloud/image/upload/v1736617786/user_td7ndc.png" className="w-7 h-7 items-center mr-2"/>
         <h4 className="text-black text-lg font-semibold">{username}</h4>
         {userData && userData.$id === userId && (
           <>
             <button className="ml-14" onClick={handleDelete}>
-              <img src={deleteblack} className="w-6 h-6" />
+              <img src="https://res.cloudinary.com/vipeocloud/image/upload/v1736617787/deleteblack_u7swdt.png" className="w-6 h-6" />
             </button>
             <button className="ml-14" onClick={handleEditToggle}>
-              {editComment ? "Cancel" : <img src={blackpencil} className="w-5 h-5"/>}
+              {editComment ? "Cancel" : <img src="https://res.cloudinary.com/vipeocloud/image/upload/v1736617786/blackpencil_k4jico.png" className="w-5 h-5"/>}
             </button>
           </>
         )}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import DBservice from "../appwrite/config";
 import PostCard from "./PostCard";
-import user from "../../src/assets/Images/user.png";
+
 
 function Profile() {
   const userData = useSelector((store) => store.auth.userData);
@@ -35,7 +35,7 @@ function Profile() {
     <div className="w-full m-auto mt-16 overflow-hidden select-none">
       <div className="lg:w-1/3 w-full m-0 flex flex-col lg:flex-row items-center  mb-24 lg:ml-24">
         <div>
-          <img src={user} className="lg:w-full lg:h-40 w-40 h-40" alt="User" />
+          <img src="https://res.cloudinary.com/vipeocloud/image/upload/v1736617786/user_td7ndc.png" className="lg:w-full lg:h-40 w-40 h-40" alt="User" />
         </div>
         <div className="lg:w-56  text-black m-4 lg:ml-24">
           <h3 className="font-semibold text-2xl">{userData?.name}</h3>

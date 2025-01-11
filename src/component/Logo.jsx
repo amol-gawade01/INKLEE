@@ -1,10 +1,10 @@
 import React from 'react'
-import logoblack from '/src/assets/Images/logoblack.png'
+
 
 function Logo() {
   return (
     <div className='w-9 h-9 '>
-      <img src={logoblack} />
+      <img src="https://res.cloudinary.com/vipeocloud/image/upload/v1736617787/logoblack_qkgs1x.png" />
     </div>
   )
 }

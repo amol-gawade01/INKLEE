@@ -1,5 +1,4 @@
 import React from "react";
-import typewritter from "../../src/assets/Images/typewritter.jpg";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -18,7 +17,7 @@ function WelcomePage() {
     <div className="relative w-full max-w-[90vw] h-[80vh]  bg-black rounded-xl mt-5 overflow-hidden select-none">
       {/* Background Image */}
       <img
-        src={typewritter}
+        src="https://res.cloudinary.com/vipeocloud/image/upload/v1736617789/typewritter_w8xigs.jpg"
         className="absolute inset-0 w-full h-full object-cover opacity-30 z-0"
         alt="Typewriter"
       />
