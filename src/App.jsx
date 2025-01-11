@@ -33,8 +33,11 @@ function App() {
   if (loading) {
     return <>
     <Header/>
+    <div className=' text-center items-center w-screen h-screen mt-40'>
+
     <Shimmer/>
-    <Footer/>
+    </div>
+    
     </>
   }else{
     return <>
