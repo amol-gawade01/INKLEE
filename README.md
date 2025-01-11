@@ -1,6 +1,6 @@
 # INKLY - A Modern Blogging Platform
 
-Welcome to **INKLY**, a sleek and powerful blogging platform built for content creators who want a seamless and user-friendly experience. This project leverages cutting-edge technologies to deliver a robust, AI-enhanced blogging application.
+Welcome to **INKLEE**, a sleek and powerful blogging platform built for content creators who want a seamless and user-friendly experience. This project leverages cutting-edge technologies to deliver a robust, AI-enhanced blogging application.
 
 ## Features
 - **Rich Text Editing**: Create and format content with ease using the TinyMCE editor.
@@ -34,7 +34,7 @@ Welcome to **INKLY**, a sleek and powerful blogging platform built for content c
 ### Steps to Set Up the Project
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/inkly.git
+   git clone https://github.com/amol-gawade01/INKLEE.git
    cd inkly
    ```
 2. Install dependencies:
@@ -97,7 +97,7 @@ INKLY/
 We welcome contributions! Please fork the repository and create a pull request with your changes.
 
 ## License
-This project is licensed under the .
+This project is licensed under the INKLEE.
 
 ---
 
