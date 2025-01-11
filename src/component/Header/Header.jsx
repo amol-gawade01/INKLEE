@@ -19,7 +19,7 @@ function Header() {
   ];
 
   return (
-    <header className="select-none bg-white shadow-md">
+    <header className="select-none ">
       <Container>
         <nav className="flex items-center justify-between p-4">
           {/* Logo */}
