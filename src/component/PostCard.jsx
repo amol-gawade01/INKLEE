@@ -21,7 +21,7 @@ function PostCard({ $id, title, featuredImage, likes, userId }) {
 
   return (
     <Link to={userStatus ? `/post/${$id}` : `/login`}>
-      <div className="relative w-[300px] h-[300px] bg-gray-100 rounded-xl p-4">
+      <div className="relative w-[300px] h-[300px] bg-gray-200 rounded-xl p-4">
        
         <div className="w-full justify-center mb-4">
           <img src={Image} alt={title} className="rounded-xl w-[270px] h-[200px]" />

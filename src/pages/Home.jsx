@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DBservice from "../appwrite/config";
-import { Container, WelcomePage } from "../component/index";
+import { Container, WelcomePage,Shimmer } from "../component/index";
 import PostCard from "../component/PostCard";
 
 function Home() {
@@ -28,9 +28,7 @@ function Home() {
           <WelcomePage />
         </div>
         <div className="w-full py-8 mt-4 text-center">
-          <Container>
-            <div>No Posts... Be the first by creating a Post</div>
-          </Container>
+         <Shimmer/>
         </div>
       </div>
     );
@@ -50,7 +48,7 @@ function Home() {
         </div>
         <div className="flex flex-wrap flex-col ml-8 mb-16 lg:flex-row">
           {posts.map((post) => (
-            <div key={post.$id} className="p-2 w-1/4">
+            <div key={post.$id} className="p-2 w-1/4 m-3">
               <PostCard
                 $id={post.$id}
                 title={post.title}
