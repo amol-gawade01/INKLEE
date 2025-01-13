@@ -1,4 +1,4 @@
-# INKLY - A Modern Blogging Platform
+# INKLEE - A Modern Blogging Platform
 
 Welcome to **INKLEE**, a sleek and powerful blogging platform built for content creators who want a seamless and user-friendly experience. This project leverages cutting-edge technologies to deliver a robust, AI-enhanced blogging application.
 
@@ -35,7 +35,7 @@ Welcome to **INKLEE**, a sleek and powerful blogging platform built for content 
 1. Clone the repository:
    ```bash
    git clone https://github.com/amol-gawade01/INKLEE.git
-   cd inkly
+   cd inklee
    ```
 2. Install dependencies:
    ```bash
