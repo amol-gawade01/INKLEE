@@ -38,8 +38,8 @@ function Profile() {
           <img src="https://res.cloudinary.com/vipeocloud/image/upload/v1736617786/user_td7ndc.png" className="lg:w-full lg:h-40 w-40 h-40" alt="User" />
         </div>
         <div className="lg:w-56  text-black m-4 lg:ml-24">
-          <h3 className="font-semibold text-2xl">{userData?.name}</h3>
-          <h3 className="font-semibold text-gray-600 text-xl">
+          <h3 className="font-semibold text-2xl dark:text-white">{userData?.name}</h3>
+          <h3 className="font-semibold text-gray-600 dark:text-gray-400 text-xl">
             Blogs: {userPosts?.length || 0}
           </h3>
         </div>

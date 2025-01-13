@@ -41,12 +41,12 @@ function Home() {
       </div>
       <Container>
         <div className="text-center mb-4">
-          <h3 className="text-black font-semibold text-3xl text-center items-center mt-5">
-            {" "}
-            Hot Picks{" "}
+          <h3 className="text-black dark:text-white font-semibold text-3xl text-center items-center mt-5">
+          
+            Hot Picks
           </h3>
         </div>
-        <div className="flex flex-wrap flex-col ml-8 mb-16 lg:flex-row">
+        <div className="flex flex-wrap flex-col ml-4 lg:ml-8 mb-16 lg:flex-row">
           {posts.map((post) => (
             <div key={post.$id} className="p-2 w-1/4 m-3">
               <PostCard

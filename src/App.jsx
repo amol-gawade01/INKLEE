@@ -1,6 +1,6 @@
 import { useState,useEffect} from 'react' 
 import { login,logout } from './store/authSlice.js';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css'
 import authService from './appwrite/auth';
 import { Header,Footer,Shimmer } from './component/index.js';
@@ -10,6 +10,7 @@ import { Outlet } from 'react-router-dom';
 function App() {
 
    const [loading,setLoading] = useState(true);
+   const theme = useSelector((store) => store.theme.theme);
    const dispatch = useDispatch()
 
 
@@ -25,9 +26,15 @@ function App() {
     })
 
     .finally(() => setLoading(false))
+
+
      
    }, [])
    
+   useEffect(() => {
+    document.body.className = "" // Set the class based on theme
+    document.body.className = theme; // Set the class based on theme
+  }, [theme]);
 
 
   if (loading) {

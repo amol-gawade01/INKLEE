@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Container, LogoutBtn, Logo } from "../index.js";
+import { Container, LogoutBtn, Logo, Input } from "../index.js";
 import { useNavigate } from "react-router-dom";
+import { changeTheme } from "../../store/themeSlice.js";
 
 function Header() {
   const authStatus = useSelector((store) => store.auth.status);
+  const theme = useSelector((store) => store.theme.theme);
+  const [colortheme, setColortheme] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navItems = [
@@ -17,6 +21,11 @@ function Header() {
     { name: "Add Post", slug: "/add-post", active: authStatus },
     { name: "Profile", slug: `/Profile`, active: authStatus },
   ];
+
+  const handleThemeToggle = () => {
+    setColortheme((prev) => !prev);
+    dispatch(changeTheme(!colortheme));
+  };
 
   return (
     <header className="select-none ">
@@ -72,10 +81,10 @@ function Header() {
                 item.active && (
                   <li
                     key={item.name}
-                    className="text-white lg:text-black font-semibold text-center lg:text-left"
+                    className="text-white dark:text-white lg:text-black font-semibold text-center lg:text-left"
                   >
                     <button
-                      className="inline-bock px-6 py-2 duration-200 hover:bg-black hover:text-white rounded-full"
+                      className="inline-bock px-6 py-2 duration-200 hover:bg-black  hover:text-white dark:hover:bg-white dark:hover:text-black rounded-full"
                       onClick={() => {
                         setMenuOpen(false); // Close menu on mobile
                         navigate(item.slug);
@@ -87,10 +96,22 @@ function Header() {
                 )
             )}
             {authStatus && (
-              <li className="text-white lg:text-black font-semibold text-center lg:text-left">
+              <li className="dark:text-white  lg:text-black font-semibold text-center lg:text-left ">
                 <LogoutBtn />
               </li>
             )}
+            <li className="flex items-center">
+              <div class="toggle-container mt-1">
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    id="mode-toggle"
+                    onChange={handleThemeToggle}
+                  ></input>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </li>
           </ul>
         </nav>
       </Container>

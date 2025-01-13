@@ -12,6 +12,7 @@ export default function Post() {
   const [comments, setComments] = useState([]);
   const [userLiked, setUserLiked] = useState(false);
   const { register, handleSubmit, reset } = useForm();
+  const theme = useSelector((store) => store.theme.theme);
   const { slug } = useParams();
   const navigate = useNavigate();
 
@@ -158,36 +159,36 @@ export default function Post() {
             className="rounded-xl w-full  lg:h-[700px]"
           />
         </div>
-        <div className="ml-8 bg-white w-full flex items-center justify-between">
+        <div className="ml-8 bg-white dark:bg-inherit w-full flex items-center justify-between">
           <button
-            className="flex items-center  text-black p-2 rounded-md hover:focus:outline-none"
+            className="flex items-center  text-black dark:text-white p-2 rounded-md hover:focus:outline-none"
             onClick={giveLike}
           >
-            {userLiked ? (<img src="https://res.cloudinary.com/vipeocloud/image/upload/v1736617787/likeheart_wbursa.png" alt="Like" className="w-6 h-6 mr-2" />):(<img src="https://res.cloudinary.com/vipeocloud/image/upload/v1736617786/heart_lss6dz.png" alt="Like" className="w-6 h-6 mr-2" />)}
+            {userLiked ? (<img src={theme === "light" ? `https://res.cloudinary.com/vipeocloud/image/upload/v1736617787/likeheart_wbursa.png`:`https://res.cloudinary.com/vipeocloud/image/upload/v1736795251/heart_3_npmvoa.png`} alt="Like" className="w-6 h-6 mr-2" />):(<img src={theme === "light" ? `https://res.cloudinary.com/vipeocloud/image/upload/v1736617786/heart_lss6dz.png`:`https://res.cloudinary.com/vipeocloud/image/upload/v1736795207/heart_2_epkctr.png`} alt="Like" className="w-6 h-6 mr-2" />)}
             {post.likes.length}
           </button >
           <button onClick={sharePost}>
-           <img src="https://res.cloudinary.com/vipeocloud/image/upload/v1736617787/send_eqeux9.png" className="w-7 h-7 mr-16" />
+           <img src={theme === "light" ? `https://res.cloudinary.com/vipeocloud/image/upload/v1736617787/send_eqeux9.png`:`https://res.cloudinary.com/vipeocloud/image/upload/v1736795044/send_2_ewlqu4.png`} className="w-7 h-7 mr-16" />
           </button>
         </div>
 
         <div className="w-full mb-6 ml-4">
-          <h1 className="text-2xl font-bold">{post.title}</h1>
+          <h1 className="text-2xl text-black dark:text-white font-bold">{post.title}</h1>
         </div>
-        <div className="browser-css mb-14 ml-4">{parse(post.content)}</div>
+        <div className="browser-css mb-14 ml-4 text-black dark:text-white">{parse(post.content)}</div>
 
         <div className="w-full  min-h-auto flex flex-col">
           <form onSubmit={handleSubmit(addComment)} className="w-full flex flex-col lg:flex-row  justify-around">
             <Input
               placeholder="Add your comment"
-              className="m-2 w-[22rem] lg:w-[64rem] p-3 text-black border border-gray-400 placeholder-gray-700 "
+              className="m-2 w-[22rem] lg:w-[64rem] p-3 rounded-lg text-black border border-gray-400 placeholder-gray-700 "
               {...register("comment", { required: true })}
             />
             <Button bgColor="bg-black" className="w-[300px] m-auto lg:w-1/3 lg:ml-5  lg:m-2  rounded-md font-semibold text-white">
               Add Comment
             </Button>
           </form>
-          <h5 className="text-black m-3">Comments</h5>
+          <h5 className="text-black dark:text-white m-3">Comments</h5>
           <div className="w-full flex flex-col ">
             {comments.length > 0 ? (
               comments.map((comment) => (

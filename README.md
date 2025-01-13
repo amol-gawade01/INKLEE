@@ -2,6 +2,8 @@
 
 Welcome to **INKLEE**, a sleek and powerful blogging platform built for content creators who want a seamless and user-friendly experience. This project leverages cutting-edge technologies to deliver a robust, AI-enhanced blogging application.
 
+##Live at - https://inklee.vercel.app/
+
 ## Features
 - **Rich Text Editing**: Create and format content with ease using the TinyMCE editor.
 - **AI-Powered Content Generation**: Get content suggestions and generate blog ideas using integrated AI.

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import DBservice from '../appwrite/config'
 import { PostCard } from '../component'
 import { Container,Input,Shimmer } from '../component/index'
+import { useSelector } from 'react-redux'
 
 
 function AllPosts() {
     const [AllPostCards,setAllPostCards] = useState([])
     const [searchBlogs,setSearchBlogs] = useState([])
+    const theme = useSelector((store) => store.theme.theme);
 
     useEffect( () => {
       try {
@@ -52,7 +54,7 @@ function AllPosts() {
     <div className='w-full mt-10'>
       <div className='w-screen ml-14 lg:ml-48 m-auto mb-10 flex  justify-between'>
         <Input
-        className="w-1/2 rounded-2xl border border-gray-400 "
+        className="w-1/2 rounded-3xl text-center border border-gray-400 "
         placeholder="search your favourite blog"
         onChange={(e) => setSearchBlogs(e.target.value)}
         onKeyDown={(e) => {
@@ -60,7 +62,7 @@ function AllPosts() {
         }}
         />
         <button className='w-1/2 h-[20px] ml-5' onClick={filterBlogs} >
-          <img src="https://res.cloudinary.com/vipeocloud/image/upload/v1736781574/search_pfqcle.png" className='w-10 h-10'/>
+          <img src={theme === "light" ? `https://res.cloudinary.com/vipeocloud/image/upload/v1736781574/search_pfqcle.png`:`https://res.cloudinary.com/vipeocloud/image/upload/v1736793438/search_1_z9xwdm.png`} className='w-10 h-10'/>
         </button>
       </div>
        {AllPostCards.length > 0 ? ( <Container>
