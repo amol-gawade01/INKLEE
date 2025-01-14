@@ -27,6 +27,16 @@ function Header() {
     dispatch(changeTheme(!colortheme));
   };
 
+  const menuIcon = theme === "light" 
+  ? {
+      open: "https://res.cloudinary.com/vipeocloud/image/upload/v1736869267/close_sycvh9.png",
+      closed: "https://res.cloudinary.com/vipeocloud/image/upload/v1736869267/menu_bt9fpc.png",
+    }
+  : {
+      open: "https://res.cloudinary.com/vipeocloud/image/upload/v1736869267/close_1_iioy0i.png",
+      closed: "https://res.cloudinary.com/vipeocloud/image/upload/v1736870443/menu_1_x2e1kx.png",
+    };
+   
   return (
     <header className="select-none ">
       <Container>
@@ -44,29 +54,11 @@ function Header() {
               onClick={() => setMenuOpen(!menuOpen)}
               className="text-black focus:outline-none"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                {menuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16m-7 6h7"
-                  />
-                )}
-              </svg>
+              <img
+                src={menuOpen ? menuIcon.open : menuIcon.closed}
+                className="w-8 h-8 mt-3"
+                alt="Menu Toggle"
+              />
             </button>
           </div>
 
@@ -101,14 +93,14 @@ function Header() {
               </li>
             )}
             <li className="flex items-center">
-              <div class="toggle-container mt-1">
-                <label class="switch">
+              <div className="toggle-container mt-1">
+                <label className="switch">
                   <input
                     type="checkbox"
                     id="mode-toggle"
                     onChange={handleThemeToggle}
                   ></input>
-                  <span class="slider"></span>
+                  <span className="slider"></span>
                 </label>
               </div>
             </li>

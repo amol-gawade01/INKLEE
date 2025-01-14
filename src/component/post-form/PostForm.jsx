@@ -153,13 +153,13 @@ export default function PostForm({ post }) {
         <Input
           label="Title :"
           placeholder="Title"
-          className="mb-4 border border-gray-500"
+          className="mb-4 border border-gray-400 dark:border-gray-700 rounded-lg"
           {...register("title", { required: true })}
         />
         <Input
           label="Slug :"
           placeholder="Slug"
-          className="mb-4 border border-gray-500"
+          className="mb-4 border border-gray-400 dark:border-gray-700 rounded-lg"
           {...register("slug", { required: true })}
           onInput={(e) => {
             setValue("slug", slugTransform(e.currentTarget.value), {
@@ -168,7 +168,7 @@ export default function PostForm({ post }) {
           }}
         />
         <RTE
-          label="Content :"
+          
           name="content"
           control={control}
           defaultValue={getValues("content")}
@@ -177,13 +177,13 @@ export default function PostForm({ post }) {
         <Input
             label="Get Help From AI"
             type="text"
-            className="w-full mb-2 border border-gray-400 "
+            className="w-full mb-2 border border-gray-400 dark:border-gray-700 rounded-lg"
             {...register("AI-Blog", { required: false })}
           />
           <Button
             type="button"
             onClick={handleAICall}
-            className="bg-black text-white px-4 py-2 rounded w-full  lg:w-[60%] font-semibold"
+            className="bg-black text-white px-4 py-2 border-gray-400 rounded w-full dark:border-gray-700 lg:w-[60%] font-semibold"
           >
             Send
           </Button>
@@ -193,7 +193,7 @@ export default function PostForm({ post }) {
         <Input
           label="Featured Image :"
           type="file"
-          className="mb-4 border border-gray-400"
+          className="mb-4 border border-gray-400 dark:border-gray-700 rounded-lg"
           accept="image/png, image/jpg, image/jpeg, image/gif"
           {...register("image", { required: !post })}
         />
@@ -209,13 +209,13 @@ export default function PostForm({ post }) {
         <Select
           options={["active", "inactive"]}
           label="Status"
-          className="mb-4 border border-gray-400"
+          className="mb-4 border border-gray-400 dark:border-gray-700"
           {...register("status", { required: true })}
         />
         <Button
           type="submit"
           bgColor={post ? "bg-green-500" : "bg-black"}
-          className="w-full text-white rounded-md"
+          className="w-full text-white border-gray-400 rounded-md dark:border dark:border-gray-700"
         >
           {post ? "Update" : "Submit"}
         </Button>

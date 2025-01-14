@@ -46,9 +46,9 @@ function Home() {
             Hot Picks
           </h3>
         </div>
-        <div className="flex flex-wrap flex-col ml-4 lg:ml-8 mb-16 lg:flex-row">
+        <div className="  flex lg:flex-wrap flex-col ml-8  lg:ml-8  lg:flex-row mb-5">
           {posts.map((post) => (
-            <div key={post.$id} className="p-2 w-1/4 m-3">
+            <div key={post.$id} className="p-2 w-1/4  lg:m-8">
               <PostCard
                 $id={post.$id}
                 title={post.title}

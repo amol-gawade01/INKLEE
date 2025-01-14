@@ -66,9 +66,9 @@ function AllPosts() {
         </button>
       </div>
        {AllPostCards.length > 0 ? ( <Container>
-           <div className='flex flex-col ml-2 lg:flex-row flex-wrap w-auto'>
+           <div className='flex flex-col ml-8 lg:flex-row flex-wrap w-full lg:ml-12 mb-5'>
             {AllPostCards.map((Posts) => (
-                <div key={Posts.$id} className='p-2 w-1/4 m-3'>
+                <div key={Posts.$id} className='p-2 w-1/4  lg:m-5'>
                     <PostCard $id={Posts.$id} title={Posts.title} featuredImage={Posts.featuredImage} likes={Posts.likes} userId={Posts.userId}/>
                 </div>
             ))}
