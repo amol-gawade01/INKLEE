@@ -55,7 +55,7 @@ function Header() {
               className="text-black focus:outline-none"
             >
               <img
-                src={menuOpen ? menuIcon.open : menuIcon.closed}
+                src={menuOpen === true ? menuIcon.open : menuIcon.closed}
                 className="w-8 h-8 mt-3"
                 alt="Menu Toggle"
               />

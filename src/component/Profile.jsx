@@ -35,7 +35,7 @@ function Profile() {
     <div className="w-full m-auto mt-16 overflow-hidden select-none">
       <div className="lg:w-1/3 w-full m-0 flex flex-col lg:flex-row items-center  mb-24 lg:ml-24">
         <div>
-          <img src="https://res.cloudinary.com/vipeocloud/image/upload/v1736617786/user_td7ndc.png" className="lg:w-full lg:h-40 w-40 h-48" alt="User" />
+          <img src="https://res.cloudinary.com/vipeocloud/image/upload/v1736617786/user_td7ndc.png" className="lg:w-full lg:h-40 w-44 h-44 " alt="User" />
         </div>
         <div className="lg:w-56  text-black m-4 lg:ml-24">
           <h3 className="font-semibold text-2xl dark:text-white">{userData?.name}</h3>
@@ -43,7 +43,7 @@ function Profile() {
             Blogs: {userPosts?.length || 0}
           </h3>
         </div>
-      </div>
+      </div> 
 
       {loading ? (
         <h3 className="ml-24">Loading...</h3>

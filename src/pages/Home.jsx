@@ -9,7 +9,7 @@ function Home() {
   useEffect(() => {
     DBservice.getAllPosts()
       .then((response) => {
-        const post = response.documents || [];
+        const post = response?.documents || [];
         if (post) {
           setPosts(post?.filter((p) => p.likes.length >= 1));
         }
