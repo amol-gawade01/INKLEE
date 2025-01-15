@@ -178,10 +178,10 @@ export default function Post() {
         <div className="browser-css mb-14 ml-4 text-black dark:text-white">{parse(post.content)}</div>
 
         <div className="w-full  min-h-auto flex flex-col">
-          <form onSubmit={handleSubmit(addComment)} className="w-full flex flex-col lg:flex-row  justify-around">
+          <form onSubmit={handleSubmit(addComment)} className="w-full flex flex-col lg:flex-row   justify-around">
             <Input
               placeholder="Add your comment"
-              className="m-2 w-[22rem] lg:w-[64rem] p-3 rounded-lg text-black border border-gray-400 placeholder-gray-700 "
+              className="m-2 relative right-2 w-[22rem] lg:w-[64rem]  p-3 rounded-lg text-black border border-gray-400 placeholder-gray-700 "
               {...register("comment", { required: true })}
             />
             <Button bgColor="bg-black" className="w-[300px] m-auto lg:w-1/3 lg:ml-5  lg:m-2  rounded-md font-semibold text-white">
