@@ -30,7 +30,7 @@ function WelcomePage() {
         </button>
 
         {/* Paragraph on the Right */}
-        <p className="text-white font-semibold text-7xl mr-12 lg:mr-20 lg:text-9xl xl:text-[10rem] w-2/4 text-right leading-tight">
+        <p className="text-white font-semibold text-7xl mr-12 lg:mr-20 lg:text-9xl xl:text-[10rem] w-2/4 text-right leading-tight oswald-font">
           Write Your Thoughts
         </p>
       </div>

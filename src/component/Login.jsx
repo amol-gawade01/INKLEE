@@ -30,18 +30,18 @@ function Login() {
     <div
     className='flex items-center justify-center lg:w-full w-[90%] m-auto lg:m-0  lg:mt-20'
     >
-        <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
+        <div className={`mx-auto w-full max-w-lg bg-gray-100 dark:bg-black  rounded-xl p-10 border border-black/10`}>
         <div className="mb-2 flex justify-center">
                     <span className="inline-block w-full max-w-[100px]">
-                        <Logo width="100%" />
+                    <h2 className='font-semibold text-2xl dark:text-white'>INKLEE</h2>
                     </span>
         </div>
-        <h2 className="text-center text-2xl font-bold leading-tight">Sign in to your account</h2>
-        <p className="mt-2 text-center text-base text-black/60">
+        <h2 className="text-center text-2xl font-bold leading-tight dark:text-white">Sign in to your account</h2>
+        <p className="mt-2 text-center text-base text-black/60 dark:text-white">
                     Don&apos;t have any account?&nbsp;
                     <Link
                         to="/signup"
-                        className="font-medium text-primary transition-all duration-200 hover:underline"
+                        className="font-medium text-primary transition-all duration-200 hover:underline dark:text-white"
                     >
                         Sign Up
                     </Link>
@@ -71,9 +71,7 @@ function Login() {
                 />
                 <Button
                 type="submit"
-                className="w-full text-white rounded-md"
-                bgColor='bg-black'
-                >Sign in</Button>
+                className="w-full text-white rounded-md dark:text-black font-semibold dark:bg-white bg-black">Sign in</Button>
             </div>
         </form>
         </div>

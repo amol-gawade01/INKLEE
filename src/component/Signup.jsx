@@ -24,18 +24,18 @@ function Signup() {
     }
   return (
     <div className="flex items-center justify-center lg:w-full w-[90%] m-auto lg:m-0  lg:mt-20 selct-none">
-    <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
+    <div className={`mx-auto w-full max-w-lg bg-gray-100 dark:bg-black rounded-xl p-10 border border-black/10`}>
     <div className="mb-2 flex justify-center">
             <span className="inline-block w-full max-w-[100px]">
-                <Logo width="100%" />
+               <h2 className='font-semibold text-2xl'>INKLEE</h2>
             </span>
         </div>
-        <h2 className="text-center text-2xl font-bold leading-tight">Sign up to create account</h2>
-        <p className="mt-2 text-center text-base text-black/60">
+        <h2 className="text-center text-2xl font-bold leading-tight dark:text-white">Sign up to create account</h2>
+        <p className="mt-2 text-center text-base text-black/60 dark:text-white">
             Already have an account?&nbsp;
             <Link
                 to="/login"
-                className="font-medium text-primary transition-all duration-200 hover:underline"
+                className="font-medium text-primary transition-all duration-200 hover:underline dark:text-white"
             >
                 Sign In  
             </Link>
@@ -70,7 +70,7 @@ function Signup() {
                 {...register("password", {
                     required: true,})}
                 />
-                <Button type="submit" className="w-full text-white rounded-md" bgColor='bg-black'>
+                <Button type="submit" className="w-full text-white rounded-md dark:text-black font-semibold dark:bg-white bg-black" >
                     Create Account
                 </Button>
             </div>
