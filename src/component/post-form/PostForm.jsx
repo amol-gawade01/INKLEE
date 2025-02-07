@@ -110,12 +110,15 @@ export default function PostForm({ post }) {
             body: body,
         });
         const result = await response.json();
+        console.log("this is ai response ",result)
 
        
         let  output = result[0]?.generated_text.replace(/\n+/g, " ");
-        if (output.includes(aiprompt)) {
-            output = output.replace(aiprompt + '?', " ").trim();
-          }
+        
+        output = output.replace(aiprompt, " ").trim();
+        output = output.replace("or less?", " ").trim();
+        console.log("this isafter ai response ",output)
+          
        
         return output;
     } catch (error) {
