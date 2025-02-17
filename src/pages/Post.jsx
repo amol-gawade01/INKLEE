@@ -51,12 +51,12 @@ export default function Post() {
 
   const giveLike = async () => {
     //Optimistic rendering
-    if (!userData) {
+    if (userData === null) {
       console.log("User is not logged in.");
       return;
     }
 
-    const userId = userData.$id;
+    const userId = userData?.$id || $id;
 
     const userHasLiked = post.likes.includes(userId);
     const updatedLikes = userHasLiked
