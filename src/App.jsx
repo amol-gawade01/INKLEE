@@ -18,6 +18,7 @@ function App() {
     authService.getCurrentUser()
     .then((userData) => {
       if (userData) {
+        console.log("This is user",userData)
         dispatch(login({userData}))
         
       }else{
